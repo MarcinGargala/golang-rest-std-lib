@@ -1,0 +1,37 @@
+@startuml
+
+!define BOLD(x) **x**
+!define SEND(a,b,c) a->b : BOLD(c)
+!define RECEIVE(a,b,c) a<--b : BOLD(c)
+!define RECEIVE(a,b) a<--b
+
+
+actor Client
+
+
+
+
+SEND(Client, http.Server, "GET /components")
+activate http.Server
+SEND(http.Server, ComponentsVendor, ServeHTTP)
+activate ComponentsVendor
+SEND(ComponentsVendor, ComponentsManager, List)
+activate ComponentsManager
+SEND(ComponentsManager, IStateProvider, List)
+activate IStateProvider
+note over IStateProvider
+Reach configured
+data store
+end note
+RECEIVE(ComponentsManager, IStateProvider)
+deactivate IStateProvider
+RECEIVE(ComponentsVendor, ComponentsManager)
+deactivate ComponentsManager
+RECEIVE(http.Server, ComponentsVendor)
+deactivate ComponentsVendor
+RECEIVE(Client, http.Server)
+deactivate http.Server
+
+
+
+@enduml

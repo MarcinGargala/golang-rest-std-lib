@@ -1,0 +1,3 @@
+{"time":"2024-07-16T14:25:22.016545569+02:00","level":"INFO","msg":"Processing POST request.."}
+{"time":"2024-07-16T14:25:26.602367368+02:00","level":"INFO","msg":"Processing GET request..","path var":["","components","soft-2"]}
+{"time":"2024-07-16T14:25:29.184594808+02:00","level":"INFO","msg":"Processing GET request..","path var":["","components"]}

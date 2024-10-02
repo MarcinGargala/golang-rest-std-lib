@@ -1,0 +1,31 @@
+{
+  "api": {
+    "vendors": [
+      {
+        "type": "vendors.components",
+        "route": "/components",
+        "managers": [
+          {
+            "name": "components-manager",
+            "type": "managers.symphony.components",
+            "properties": {
+              "providers.persistentstate": "postgres"
+            },
+            "providers": {
+              "postgres": {
+                "name": "PostgresStateProvider",
+                "type": "providers.state.postgres"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "bindings": {
+    "type": "bindings.http",
+    "config": {
+      "port": "8082"
+    }
+  }
+}

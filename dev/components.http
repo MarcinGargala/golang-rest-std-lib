@@ -1,0 +1,25 @@
+### List all components
+GET {{schema}}{{host}}:{{port}}/components
+Content-Type: application/json
+
+### Get component by name
+GET {{schema}}{{host}}:{{port}}/components/soft-2
+Content-Type: application/json
+
+### Create component
+POST {{schema}}{{host}}:{{port}}/components
+Content-Type: application/json
+
+{
+  "name": "soft-2",
+  "type": "component",
+  "constrains": "$(bla...bla)",
+  "metadata": {
+    "prop1": "value2"
+  },
+  "properties": {
+    "obj3": {
+      "key3": "val2"
+    }
+  }
+}

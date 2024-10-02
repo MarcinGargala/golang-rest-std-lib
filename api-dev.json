@@ -1,0 +1,31 @@
+{
+  "api": {
+    "vendors": [
+      {
+        "type": "vendors.components",
+        "route": "/components",
+        "managers": [
+          {
+            "name": "components-manager",
+            "type": "managers.symphony.components",
+            "properties": {
+              "providers.persistentstate": "in-memory"
+            },
+            "providers": {
+              "in-memory": {
+                "name": "InMemoryStateProvider",
+                "type": "providers.state.memory"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "bindings": {
+    "type": "bindings.http",
+    "config": {
+      "port": "8082"
+    }
+  }
+}

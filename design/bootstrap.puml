@@ -1,0 +1,44 @@
+@startuml
+
+!define BOLD(x) **x**
+!define SEND(a,b,c) a->b : BOLD(c)
+!define RECEIVE(a,b,c) a<--b : BOLD(c)
+!define RECEIVE(a,b) a<--b
+
+
+actor Client
+
+
+
+
+SEND(Client, main.go, "Run")
+activate main.go
+SEND(main.go, main.go, Read profile json)
+SEND(main.go, APIHost, Launch)
+activate APIHost
+loop all vendor config
+loop all manager config
+loop all provider config
+SEND(APIHost, ProviderFactory, Create)
+activate ProviderFactory
+RECEIVE(APIHost, ProviderFactory, []IProvider])
+deactivate ProviderFactory
+end loop
+SEND(APIHost, ManagerFactory, Create)
+activate ManagerFactory
+RECEIVE(APIHost, ManagerFactory, []IManager)
+deactivate ManagerFactory
+end loop
+SEND(APIHost, VendorFactory, Create)
+activate VendorFactory
+RECEIVE(APIHost, VendorFactory, []IVendor)
+deactivate VendorFactory
+end loop
+SEND(APIHost, HttpBinding, Launch)
+deactivate APIHost
+activate HttpBinding
+loop all vendors
+SEND(HttpBinding, HttpBinding, HandleFunc)
+end loop
+SEND(HttpBinding, http.Server, ListenAndServe())
+@enduml
